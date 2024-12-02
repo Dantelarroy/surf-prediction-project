@@ -1,3 +1,10 @@
+name: Daily Surf Data Scraper
+
+on:
+  schedule:
+    - cron: "21 21 * * *"  # Ejecutar todos los días a las 18:00 (Hora Argentina UTC-3)
+  workflow_dispatch: # Permitir ejecución manual desde la interfaz de GitHub
+
 jobs:
   run-scraper:
     runs-on: windows-latest  # Usar Windows como sistema base
@@ -22,3 +29,32 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install --no-root
+
+      # Paso 5: Instalar Jupyter
+      - name: Install Jupyter
+        run: |
+          poetry run pip install notebook
+
+      # Paso 6: Ejecutar el primer notebook (Ingesta_pysurfline)
+      - name: Run Ingesta_pysurfline notebook
+        run: |
+          poetry run jupyter nbconvert --to notebook --execute main/Ingesta_pysurfline.ipynb --output main/Ingesta_pysurfline_output.ipynb
+
+      # Paso 7: Ejecutar el segundo notebook (surfline_scrap)
+      - name: Run surfline_scrap notebook
+        run: |
+          poetry run jupyter nbconvert --to notebook --execute main/surfline_scrap.ipynb --output main/surfline_scrap_output.ipynb
+
+      # Paso 8: Confirmar que los archivos xlsx han sido actualizados
+      - name: Add and Commit updated xlsx files
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/pg_pysurfline.xlsx data/pg_scrap_surfline.xlsx
+          git commit -m "Update XLSX files [CI]"
+          git push origin main
+
+      # Paso 9: Ejecutar el script de log para registrar el resultado
+      - name: Log the result
+        run: |
+          poetry run python main/logs.py
