@@ -43,14 +43,14 @@ jobs:
         run: |
           poetry run pip install notebook
 
-      # Paso 7: Ejecutar los notebooks
-      - name: Run Ingesta_pysurfline notebook
+      # Paso 7: Ejecutar los scripts Python directamente
+      - name: Run Ingesta_pysurfline script
         run: |
-          poetry run jupyter nbconvert --to notebook --execute main/Ingesta_pysurfline.ipynb --output main/Ingesta_pysurfline_output.ipynb
+          poetry run python main/Ingesta_pysurfline.py
 
-      - name: Run surfline_scrap notebook
+      - name: Run surfline_scrap script
         run: |
-          poetry run jupyter nbconvert --to notebook --execute main/surfline_scrap.ipynb --output main/surfline_scrap_output.ipynb
+          poetry run python main/surfline_scrap.py
 
       # Paso 8: Confirmar que los archivos xlsx han sido actualizados
       - name: Add and Commit updated xlsx files
