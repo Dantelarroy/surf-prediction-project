@@ -20,10 +20,11 @@ jobs:
         with:
           python-version: "3.10"
 
-      # Paso 3: Instalar Poetry
-      - name: Install Poetry
-        run: |
-          Invoke-WebRequest -Uri https://install.python-poetry.org | python -
+      # Paso 3: Instalar Poetry usando la acción setup-poetry
+      - name: Setup Poetry
+        uses: pronovic/setup-poetry@v2
+        with:
+          version: "1.8.0"  # Especifica la versión de Poetry que deseas instalar
 
       # Paso 4: Instalar dependencias con Poetry
       - name: Install dependencies
