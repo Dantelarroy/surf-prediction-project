@@ -2,7 +2,7 @@ name: Daily Surf Data Scraper
 
 on:
   schedule:
-    - cron: "21 21 * * *"  # Ejecutar todos los días a las 18:00 (Hora Argentina UTC-3)
+    - cron: "0 21 * * *"  # Ejecutar todos los días a las 18:00 (Hora Argentina UTC-3)
   workflow_dispatch: # Permitir ejecución manual desde la interfaz de GitHub
   
 jobs:
@@ -43,21 +43,18 @@ jobs:
         run: |
           poetry run pip install notebook
 
-      # Paso 7: Ejecutar los scripts Python directamente
-      # - name: Run Ingesta_pysurfline script
-      #   run: |
-      #     poetry run python main/Ingesta_pysurfline.py
-
       - name: Run surfline_scrap script
         run: |
-          poetry run python main/surfline_scrap.py
+          poetry run python main/pg/surfline_scrap.py
+          poetry run python main/bio/bio_scra.py
+          poetry run python main/yatch/yatch_scra.py
 
       # Paso 8: Confirmar que los archivos xlsx han sido actualizados
       - name: Add and Commit updated xlsx files
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add data/pg_pysurfline.xlsx data/pg_scrap_surfline.xlsx
+          git add data/pg_pysurfline.xlsx data/pg_scrap_surfline.xlsx data/bio_scrap_surfline.xlsx data/yatch_scrap_surfline.xlsx
           git commit -m "Update XLSX files [CI]"
           git push origin main
 
