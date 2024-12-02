@@ -20,33 +20,30 @@ jobs:
         with:
           python-version: "3.10"
 
-      # Paso 3: Instalar Poetry usando curl
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+      # Paso 3: Instalar Poetry usando la acción setup-poetry
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v8  # Usando la acción oficial de setup-poetry
+        with:
+          version: "1.8.0"  # Especifica la versión de Poetry que deseas instalar
+          cache-poetry: "true"  # Opcional: Habilitar caché de Poetry para acelerar el proceso
+          cache-venv: "true"  # Opcional: Habilitar caché del entorno virtual para acelerar la ejecución
 
-      # Paso 4: Establecer las variables de entorno para Poetry
-      - name: Set Poetry environment variables
-        run: |
-          echo "POETRY_CONFIG_DIR=${GITHUB_WORKSPACE}/.poetry/config" >> $GITHUB_ENV
-          echo "POETRY_HOME=${GITHUB_WORKSPACE}/.poetry" >> $GITHUB_ENV
-
-      # Paso 5: Verificar que Poetry está disponible
+      # Paso 4: Verificar la instalación de Poetry
       - name: Verify Poetry Installation
         run: |
-          poetry --version  # Debería devolver la versión instalada de Poetry
+          poetry --version  # Esto debería devolver la versión instalada de Poetry
 
-      # Paso 6: Instalar dependencias con Poetry
+      # Paso 5: Instalar dependencias con Poetry
       - name: Install dependencies
         run: |
           poetry install --no-root
 
-      # Paso 7: Instalar Jupyter
+      # Paso 6: Instalar Jupyter
       - name: Install Jupyter
         run: |
           poetry run pip install notebook
 
-      # Paso 8: Ejecutar los notebooks
+      # Paso 7: Ejecutar los notebooks
       - name: Run Ingesta_pysurfline notebook
         run: |
           poetry run jupyter nbconvert --to notebook --execute main/Ingesta_pysurfline.ipynb --output main/Ingesta_pysurfline_output.ipynb
@@ -55,7 +52,7 @@ jobs:
         run: |
           poetry run jupyter nbconvert --to notebook --execute main/surfline_scrap.ipynb --output main/surfline_scrap_output.ipynb
 
-      # Paso 9: Confirmar que los archivos xlsx han sido actualizados
+      # Paso 8: Confirmar que los archivos xlsx han sido actualizados
       - name: Add and Commit updated xlsx files
         run: |
           git config user.name "GitHub Actions"
@@ -64,7 +61,7 @@ jobs:
           git commit -m "Update XLSX files [CI]"
           git push origin main
 
-      # Paso 10: Ejecutar el script de log para registrar el resultado
+      # Paso 9: Ejecutar el script de log para registrar el resultado
       - name: Log the result
         run: |
           poetry run python main/logs.py
