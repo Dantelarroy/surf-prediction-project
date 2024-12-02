@@ -54,12 +54,20 @@ for row in rows_table_4:
 print(f'{times}\n{"*"*50}\n{data_table_3}\n{"*"*50}\n{data_table_4}')
 
 
-# Obtener la fecha de hoy
+# Definir la fecha de hoy
 today_date = datetime.today().strftime('%Y-%m-%d')
+
+# Asegúrate de que todas las listas tengan la misma longitud (tomando la longitud mínima)
+min_length = min(len(times), len(data_table_3), len(data_table_4))
+
+# Recortar las listas
+times = times[:min_length]
+data_table_3 = data_table_3[:min_length]
+data_table_4 = data_table_4[:min_length]
 
 # Combinar los datos en un DataFrame
 combined_data = []
-for i in range(len(times)):
+for i in range(min_length):
     combined_data.append({
         "Date": today_date,  # Agregar columna de fecha
         "Time": times[i],
@@ -74,7 +82,6 @@ for i in range(len(times)):
     })
 
 df_scrap = pd.DataFrame(combined_data)
-
 
 # Definir la ruta completa al archivo Excel
 file_path = "C:\\Users\\dalarroy\\surf-prediction-project\\data\\pg_scrap_surfline.xlsx"

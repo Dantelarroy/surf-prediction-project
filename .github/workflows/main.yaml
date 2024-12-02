@@ -44,9 +44,9 @@ jobs:
           poetry run pip install notebook
 
       # Paso 7: Ejecutar los scripts Python directamente
-      - name: Run Ingesta_pysurfline script
-        run: |
-          poetry run python main/Ingesta_pysurfline.py
+      # - name: Run Ingesta_pysurfline script
+      #   run: |
+      #     poetry run python main/Ingesta_pysurfline.py
 
       - name: Run surfline_scrap script
         run: |
