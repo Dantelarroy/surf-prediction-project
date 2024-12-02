@@ -20,33 +20,43 @@ jobs:
         with:
           python-version: "3.10"
 
-      # Paso 3: Instalar Poetry usando la acción setup-poetry
-      - name: Setup Poetry
-        uses: pronovic/setup-poetry@v2
-        with:
-          version: "1.8.0"  # Especifica la versión de Poetry que deseas instalar
+      # Paso 3: Instalar Poetry usando curl
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
 
-      # Paso 4: Instalar dependencias con Poetry
+      # Paso 4: Agregar Poetry al PATH
+      - name: Add Poetry to PATH
+        run: |
+          echo "Adding Poetry to PATH"
+          echo "C:\Users\runneradmin\AppData\Roaming\Python\Scripts" >> $GITHUB_PATH
+
+      # Paso 5: Verificar la instalación de Poetry
+      - name: Verify Poetry Installation
+        run: |
+          poetry --version  # Debería devolver la versión instalada de Poetry
+
+      # Paso 6: Instalar dependencias con Poetry
       - name: Install dependencies
         run: |
           poetry install --no-root
 
-      # Paso 5: Instalar Jupyter
+      # Paso 7: Instalar Jupyter
       - name: Install Jupyter
         run: |
           poetry run pip install notebook
 
-      # Paso 6: Ejecutar el primer notebook (Ingesta_pysurfline)
+      # Paso 8: Ejecutar el primer notebook (Ingesta_pysurfline)
       - name: Run Ingesta_pysurfline notebook
         run: |
           poetry run jupyter nbconvert --to notebook --execute main/Ingesta_pysurfline.ipynb --output main/Ingesta_pysurfline_output.ipynb
 
-      # Paso 7: Ejecutar el segundo notebook (surfline_scrap)
+      # Paso 9: Ejecutar el segundo notebook (surfline_scrap)
       - name: Run surfline_scrap notebook
         run: |
           poetry run jupyter nbconvert --to notebook --execute main/surfline_scrap.ipynb --output main/surfline_scrap_output.ipynb
 
-      # Paso 8: Confirmar que los archivos xlsx han sido actualizados
+      # Paso 10: Confirmar que los archivos xlsx han sido actualizados
       - name: Add and Commit updated xlsx files
         run: |
           git config user.name "GitHub Actions"
@@ -55,7 +65,7 @@ jobs:
           git commit -m "Update XLSX files [CI]"
           git push origin main
 
-      # Paso 9: Ejecutar el script de log para registrar el resultado
+      # Paso 11: Ejecutar el script de log para registrar el resultado
       - name: Log the result
         run: |
           poetry run python main/logs.py
