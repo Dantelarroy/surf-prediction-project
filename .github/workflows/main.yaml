@@ -45,9 +45,7 @@ jobs:
 
       - name: Run surfline_scrap script
         run: |
-          poetry run python main/pg/surfline_scrap.py
-          poetry run python main/bio/bio_scra.py
-          poetry run python main/yatch/yatch_scra.py
+          poetry run python main/pipeline_ingestion/pipeline_execution.py
 
       # Paso 8: Confirmar que los archivos xlsx han sido actualizados
       - name: Add and Commit updated xlsx files
