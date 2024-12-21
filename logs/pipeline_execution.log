@@ -190,3 +190,15 @@
 2024-12-20 15:52:30,942 - INFO - La ingesta del día 2024-12-20 15:52:30.942437 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_pysurfline.ipynb fue exitosa
 2024-12-20 15:52:30,944 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_scrap.ipynb
 2024-12-20 15:53:01,435 - INFO - La ingesta del día 2024-12-20 15:53:01.435903 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_scrap.ipynb fue exitosa
+2024-12-21 19:31:17,797 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\bio\\bio_pysurfline.ipynb
+2024-12-21 19:31:32,200 - INFO - La ingesta del día 2024-12-21 19:31:32.200034 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\bio\\bio_pysurfline.ipynb fue exitosa
+2024-12-21 19:31:32,200 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\bio\\bio_scrap.ipynb
+2024-12-21 19:32:06,083 - INFO - La ingesta del día 2024-12-21 19:32:06.083135 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\bio\\bio_scrap.ipynb fue exitosa
+2024-12-21 19:32:06,083 - INFO - Iniciando ejecución del notebook: C:\Users\\dalarroy\\surf-prediction-project\\main\\pg\\Ingesta_pysurfline.ipynb
+2024-12-21 19:32:16,942 - INFO - La ingesta del día 2024-12-21 19:32:16.942540 para el notebook C:\Users\\dalarroy\\surf-prediction-project\\main\\pg\\Ingesta_pysurfline.ipynb fue exitosa
+2024-12-21 19:32:16,942 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\pg\\surfline_scrap.ipynb
+2024-12-21 19:32:47,607 - INFO - La ingesta del día 2024-12-21 19:32:47.607089 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\pg\\surfline_scrap.ipynb fue exitosa
+2024-12-21 19:32:47,607 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_pysurfline.ipynb
+2024-12-21 19:33:00,622 - INFO - La ingesta del día 2024-12-21 19:33:00.622698 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_pysurfline.ipynb fue exitosa
+2024-12-21 19:33:00,622 - INFO - Iniciando ejecución del notebook: C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_scrap.ipynb
+2024-12-21 19:34:39,108 - INFO - La ingesta del día 2024-12-21 19:34:39.108842 para el notebook C:\\Users\\dalarroy\\surf-prediction-project\\main\\yatch\\yatch_scrap.ipynb fue exitosa
